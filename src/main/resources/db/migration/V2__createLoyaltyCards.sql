@@ -1,0 +1,8 @@
+CREATE TABLE LoyaltyCards(
+id INT PRIMARY KEY AUTO_INCREMENT,
+barcode CHAR(13),
+bonuspoints INT);
+
+ALTER TABLE CUSTOMERS
+ADD CONSTRAINT fk_card_id FOREIGN KEY (cardid) REFERENCES LoyaltyCards (id);
+
