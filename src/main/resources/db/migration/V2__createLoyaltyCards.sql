@@ -1,6 +1,6 @@
 CREATE TABLE LoyaltyCards(
 id INT PRIMARY KEY AUTO_INCREMENT,
-barcode CHAR(13),
+barcode VARCHAR(13),
 bonuspoints INT);
 
 ALTER TABLE CUSTOMERS

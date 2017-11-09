@@ -13,4 +13,10 @@ public class CustomerRepository {
         entityManager.persist(customer);
 
     }
+
+    public void addLoyaltyCard(int customerID, LoyaltyCard loyaltyCard) {
+        Customer customer = entityManager.find(Customer.class,customerID);
+             customer.addLoyaltyCard(loyaltyCard);
+        entityManager.persist(loyaltyCard);
+    }
 }

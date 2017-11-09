@@ -3,6 +3,7 @@ package be.cegeka.cleancode.domain.customers;
 import javax.persistence.*;
 
 @Entity
+@Table(name="loyaltycards")
 public class LoyaltyCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,5 +16,13 @@ public class LoyaltyCard {
     private int bonuspoints;
 
     public LoyaltyCard() {
+    }
+
+    public LoyaltyCard(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -26,6 +26,18 @@ public class Customer {
         this.name = name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getLoyaltyCardId() {
+        return this.loyaltyCard.getId();
+    }
+
+    public void addLoyaltyCard(LoyaltyCard loyaltyCard) {
+        this.loyaltyCard  = loyaltyCard;
+    }
+
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;

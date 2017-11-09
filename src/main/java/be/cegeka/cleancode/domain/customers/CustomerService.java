@@ -11,4 +11,8 @@ public class CustomerService {
     public void addCustomer(String name) {
         customerRepository.addCustomer(new Customer(name));
     }
+
+    public void addLoyaltyCard(int customerid, String barcode) {
+        customerRepository.addLoyaltyCard(customerid,new LoyaltyCard(barcode));
+    }
 }

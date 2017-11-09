@@ -31,22 +31,41 @@ public class CustomerRepositoryTest {
     private EntityManager entityManager;
 
     private Customer nicky;
+    private LoyaltyCard loyaltyCard;
 
     @Before
     public void setUp() throws Exception {
         nicky = new Customer("Nicky");
-
+        loyaltyCard = new LoyaltyCard("barcode");
     }
 
     @Test
     public void addCustomer() throws Exception {
         customerRepository.addCustomer(nicky);
-        Customer customer = entityManager.find(Customer.class, 1);
+        Customer customer = entityManager.find(Customer.class, nicky.getId());
         assertThat(customer).isEqualTo(nicky);
     }
 
+
+
+        @Test
+    public void addLoyaltyCard_shouldAtLoyaltyCardtoCustomer() throws Exception {
+        customerRepository.addCustomer(nicky);
+        customerRepository.addLoyaltyCard(nicky.getId(), loyaltyCard);
+        assertThat(loyaltyCard.getId()).isEqualTo(nicky.getLoyaltyCardId());
+
+    }
+        @Test
+    public void addLoyaltyCard_shouldCreateALoyaltyCardInDataBase() throws Exception {
+        customerRepository.addCustomer(nicky);
+        customerRepository.addLoyaltyCard(nicky.getId(), loyaltyCard);
+        LoyaltyCard actual = entityManager.find(LoyaltyCard.class, loyaltyCard.getId());
+        assertThat(actual).isEqualTo(loyaltyCard);
+    }
+
+
     @After
-    public void teardown(){
+    public void teardown() {
         entityManager.clear();
     }
 

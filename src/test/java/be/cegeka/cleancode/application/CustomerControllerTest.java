@@ -26,4 +26,14 @@ public class CustomerControllerTest {
         customerController.addCustomer("Nicky");
         verify(customerService).addCustomer("Nicky");
     }
+
+    @Test
+    public void addLoyaltyCard_shouldActivateCustomerService() throws Exception {
+        customerController.addLoyaltyCard(1,"barcode");
+        verify(customerService).addLoyaltyCard(1, "barcode");
+    }
+
+    @Test
+    public void searchCustomerByLoyaltyBarcode() throws Exception {
+    }
 }

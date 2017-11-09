@@ -1,6 +1,5 @@
 package be.cegeka.cleancode.domain.customers;
 
-import be.cegeka.cleancode.application.CustomerController;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -9,7 +8,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.refEq;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
 public class CustomerServiceTest {
@@ -25,7 +25,12 @@ public class CustomerServiceTest {
     @Test
     public void addCustomer_shouldActivateCustomerRepository() throws Exception {
         customerService.addCustomer("Nicky");
-        verify(customerRepository).addCustomer(Mockito.refEq(new Customer("Nicky")));
+        verify(customerRepository).addCustomer(refEq(new Customer("Nicky")));
     }
 
+    @Test
+    public void addLoyaltyCard_shouldActivateCustomerRepository() throws Exception {
+        customerService.addLoyaltyCard(1, "barcode");
+        verify(customerRepository).addLoyaltyCard(eq(1), refEq(new LoyaltyCard("barcode")));
+    }
 }
