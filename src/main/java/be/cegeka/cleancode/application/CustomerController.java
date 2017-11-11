@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.util.Collections;
 import java.util.List;
 @RestController
 @RequestMapping(path = "/customer")
@@ -31,7 +32,7 @@ public class CustomerController {
 
     @GetMapping(path = "/searchCustomerByLoyaltyBarcode")
     public List<Customer> searchCustomerByLoyaltyBarcode(@RequestParam(value= "barcode",required = true)String barcode){
-
+return customerService.searchCustomerByLoyaltyBarcode(barcode);
     }
 
 }

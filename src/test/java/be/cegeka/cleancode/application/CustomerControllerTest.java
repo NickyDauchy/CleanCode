@@ -35,5 +35,7 @@ public class CustomerControllerTest {
 
     @Test
     public void searchCustomerByLoyaltyBarcode() throws Exception {
+        customerController.searchCustomerByLoyaltyBarcode("barcode");
+        verify(customerService).searchCustomerByLoyaltyBarcode("barcode");
     }
 }

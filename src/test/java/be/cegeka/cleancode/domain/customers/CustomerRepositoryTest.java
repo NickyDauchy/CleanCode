@@ -52,17 +52,22 @@ public class CustomerRepositoryTest {
     public void addLoyaltyCard_shouldAtLoyaltyCardtoCustomer() throws Exception {
         customerRepository.addCustomer(nicky);
         customerRepository.addLoyaltyCard(nicky.getId(), loyaltyCard);
-        assertThat(loyaltyCard.getId()).isEqualTo(nicky.getLoyaltyCardId());
+        assertThat(loyaltyCard.getId()).isEqualTo(nicky.getLoyaltyCard().getId());
 
     }
         @Test
     public void addLoyaltyCard_shouldCreateALoyaltyCardInDataBase() throws Exception {
         customerRepository.addCustomer(nicky);
         customerRepository.addLoyaltyCard(nicky.getId(), loyaltyCard);
-        LoyaltyCard actual = entityManager.find(LoyaltyCard.class, loyaltyCard.getId());
-        assertThat(actual).isEqualTo(loyaltyCard);
+            assertThat(entityManager.find(LoyaltyCard.class, loyaltyCard.getId())).isEqualTo(loyaltyCard);
     }
 
+    @Test
+    public void searchCustomerByLoyaltyBarcode_shouldReturnACustomer_WithCorrespondingLoyaltyCard() throws Exception {
+        customerRepository.addCustomer(nicky);
+        customerRepository.addLoyaltyCard(nicky.getId(),loyaltyCard);
+        assertThat(customerRepository.searchCustomerByLoyaltyBarcode(loyaltyCard.getBarcode())).containsExactly(nicky);
+    }
 
     @After
     public void teardown() {

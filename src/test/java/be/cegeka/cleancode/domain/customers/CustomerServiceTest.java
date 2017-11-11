@@ -33,4 +33,10 @@ public class CustomerServiceTest {
         customerService.addLoyaltyCard(1, "barcode");
         verify(customerRepository).addLoyaltyCard(eq(1), refEq(new LoyaltyCard("barcode")));
     }
+
+    @Test
+    public void searchCustomerByLoyaltyBarcode() throws Exception {
+        customerService.searchCustomerByLoyaltyBarcode("barcode");
+        verify(customerRepository).searchCustomerByLoyaltyBarcode("barcode");
+    }
 }

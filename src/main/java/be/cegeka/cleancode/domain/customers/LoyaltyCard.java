@@ -25,4 +25,8 @@ public class LoyaltyCard {
     public int getId() {
         return id;
     }
+
+    public String getBarcode() {
+        return barcode;
+    }
 }

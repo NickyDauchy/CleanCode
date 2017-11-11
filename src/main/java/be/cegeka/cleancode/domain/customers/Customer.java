@@ -22,6 +22,14 @@ public class Customer {
     private Customer() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public LoyaltyCard getLoyaltyCard() {
+        return loyaltyCard;
+    }
+
     public Customer(String name) {
         this.name = name;
     }
@@ -30,29 +38,9 @@ public class Customer {
         return id;
     }
 
-    public int getLoyaltyCardId() {
-        return this.loyaltyCard.getId();
-    }
 
     public void addLoyaltyCard(LoyaltyCard loyaltyCard) {
         this.loyaltyCard  = loyaltyCard;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Customer customer = (Customer) o;
-//
-//        if (id != customer.id) return false;
-//        return name != null ? name.equals(customer.name) : customer.name == null;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = id;
-//        result = 31 * result + (name != null ? name.hashCode() : 0);
-//        return result;
-//    }
 }
