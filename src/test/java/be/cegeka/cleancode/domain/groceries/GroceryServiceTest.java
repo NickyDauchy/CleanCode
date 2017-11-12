@@ -39,4 +39,9 @@ public class GroceryServiceTest {
         verify(groceryRepository).buyGrocery(groceryOrderDto);
     }
 
+    @Test
+    public void mostBoughtGroceryByCustomer_shouldActivateGroceryRepositry() throws Exception {
+        groceryService.mostBoughtGroceryByCustomer(1);
+        verify(groceryRepository).mostBoughtGroceryByCustomer(1);
+    }
 }

@@ -4,6 +4,7 @@ import be.cegeka.cleancode.Application;
 import be.cegeka.cleancode.domain.customers.Customer;
 import be.cegeka.cleancode.domain.customers.CustomerRepository;
 import be.cegeka.cleancode.domain.customers.LoyaltyCard;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +20,10 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -59,9 +62,39 @@ public class GroceryRepositoryTest {
 
     @Test
     public void buyGrocery() throws Exception {
-        groceryRepository.addGrocery(grocery);
         groceryRepository.buyGrocery(groceryOrderDto);
-        assertThat(entityManager.find(GroceryOrder.class, 1)).isNotNull();
+        assertThat(entityManager.createQuery("Select g.customer " +
+                "from GroceryOrder g " +
+                "where g.customer like:customer ",Customer.class)
+                .setParameter("customer", customer)
+                .getResultList())
+                .containsExactly(customer);
+        assertThat(entityManager.createQuery("Select g.grocery " +
+                "from GroceryOrder g " +
+                "where g.grocery like:grocery ",Grocery.class)
+                .setParameter("grocery", grocery)
+                .getResultList())
+                .containsExactly(grocery);
+        assertThat(entityManager.createQuery("Select g.quantity " +
+                "from GroceryOrder g " +
+                "where g.quantity like 1 ",Integer.class)
+                .getResultList())
+                .containsExactly(1);
     }
+
+//    @Test
+//    public void mostBoughtGroceryByCustomer() throws Exception {
+//        groceryRepository.buyGrocery(groceryOrderDto);
+//        List<Grocery> actual = groceryRepository.mostBoughtGroceryByCustomer(1);
+//
+//        assertThat(actual).contains(grocery);
+//        // cant make test work with previous test dont know how to test this properly
+//    }
+
+    @After
+    public void cleanDatabase(){
+        entityManager.clear();
+    }
+
 
 }

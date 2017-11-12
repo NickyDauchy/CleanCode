@@ -36,16 +36,22 @@ public class GroceryControllerTest {
 
     @Test
     public void addGrocery() throws Exception {
-        Grocery grocery = new Grocery("name",new BigDecimal(0.0));
+        Grocery grocery = new Grocery("name", new BigDecimal(0.0));
         groceryController.addGrocery(grocery);
         verify(groceryService).addGrocery(grocery);
-
     }
 
     @Test
     public void buyGrocery() throws Exception {
-        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1,1,5);
+        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1, 1, 5);
         groceryController.buyGrocery(groceryOrderDto);
         verify(groceryService).buyGrocery(groceryOrderDto);
+    }
+
+    @Test
+    public void mostBoughtGroceryByCustomer() throws Exception {
+        groceryController.mostBoughtGroceryByCustomer(1);
+        verify(groceryService).mostBoughtGroceryByCustomer(1);
+
     }
 }

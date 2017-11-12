@@ -37,4 +37,5 @@ return customerService.searchCustomerByLoyaltyBarcode(barcode);
 
 
 
+
 }
