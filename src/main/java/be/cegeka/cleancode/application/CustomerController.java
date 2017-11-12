@@ -35,4 +35,6 @@ public class CustomerController {
 return customerService.searchCustomerByLoyaltyBarcode(barcode);
     }
 
+
+
 }
