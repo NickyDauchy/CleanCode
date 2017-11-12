@@ -33,6 +33,8 @@ public class GroceryOrder {
     @JoinColumn(name = "GROCERIES_ID")
     private Grocery grocery;
 
+    private GroceryOrder() {
+    }
 
     public GroceryOrder(Customer customer, Grocery grocery, int quantity) {
         this.customer = customer;
@@ -45,5 +47,25 @@ public class GroceryOrder {
 
     public int getId() {
         return id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Grocery getGrocery() {
+        return grocery;
     }
 }

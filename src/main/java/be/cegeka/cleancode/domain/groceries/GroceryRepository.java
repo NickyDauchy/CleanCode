@@ -1,5 +1,7 @@
 package be.cegeka.cleancode.domain.groceries;
 
+import be.cegeka.cleancode.domain.customers.Customer;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,10 @@ public class GroceryRepository {
         return grocery;
     }
 
-    public GroceryOrder buyGrocery(GroceryOrder groceryOrder) {
+    public GroceryOrder buyGrocery(GroceryOrderDto groceryOrderDto) {
+        Customer customer = entityManager.find(Customer.class, groceryOrderDto.getCustomerId());
+        Grocery grocery = entityManager.find(Grocery.class,groceryOrderDto.getGroceryId());
+        GroceryOrder groceryOrder = new GroceryOrder(customer,grocery,groceryOrderDto.getQuantity());
         entityManager.persist(groceryOrder);
         return groceryOrder;
     }

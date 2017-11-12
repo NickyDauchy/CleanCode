@@ -34,9 +34,9 @@ public class GroceryServiceTest {
 
     @Test
     public void buyGrocery_shouldActivateGroceryRepository() throws Exception {
-        GroceryOrder groceryOrder = new GroceryOrder(new Customer("nicky"),new Grocery("grocery",new BigDecimal(2.2)),1);
-        groceryService.buyGrocery(groceryOrder);
-        verify(groceryRepository).buyGrocery(groceryOrder);
+        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1,1,1);
+        groceryService.buyGrocery(groceryOrderDto);
+        verify(groceryRepository).buyGrocery(groceryOrderDto);
     }
 
 }

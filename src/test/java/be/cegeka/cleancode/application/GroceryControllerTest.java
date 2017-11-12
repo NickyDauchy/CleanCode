@@ -4,6 +4,7 @@ package be.cegeka.cleancode.application;
 import be.cegeka.cleancode.domain.customers.Customer;
 import be.cegeka.cleancode.domain.groceries.Grocery;
 import be.cegeka.cleancode.domain.groceries.GroceryOrder;
+import be.cegeka.cleancode.domain.groceries.GroceryOrderDto;
 import be.cegeka.cleancode.domain.groceries.GroceryService;
 import org.junit.Before;
 import org.junit.Rule;
@@ -43,8 +44,8 @@ public class GroceryControllerTest {
 
     @Test
     public void buyGrocery() throws Exception {
-        GroceryOrder groceryOrder = new GroceryOrder(new Customer("nicky"),new Grocery("grocery",new BigDecimal(2.2)),5);
-        groceryController.buyGrocery(groceryOrder);
-        verify(groceryService).buyGrocery(groceryOrder);
+        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1,1,5);
+        groceryController.buyGrocery(groceryOrderDto);
+        verify(groceryService).buyGrocery(groceryOrderDto);
     }
 }

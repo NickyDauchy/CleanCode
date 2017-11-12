@@ -2,6 +2,7 @@ package be.cegeka.cleancode.application;
 
 import be.cegeka.cleancode.domain.groceries.Grocery;
 import be.cegeka.cleancode.domain.groceries.GroceryOrder;
+import be.cegeka.cleancode.domain.groceries.GroceryOrderDto;
 import be.cegeka.cleancode.domain.groceries.GroceryService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,8 @@ public class GroceryController {
 
     }
     @PostMapping(path = "/buy", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GroceryOrder buyGrocery(@RequestBody GroceryOrder groceryOrder){
-        return groceryService.buyGrocery(groceryOrder);
+    public GroceryOrder buyGrocery(@RequestBody GroceryOrderDto groceryOrderDto){
+        return groceryService.buyGrocery(groceryOrderDto);
 
     }
 

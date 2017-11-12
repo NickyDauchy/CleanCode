@@ -8,11 +8,13 @@ public class GroceryService {
     @Inject
     private GroceryRepository groceryRepository;
 
+
     public Grocery addGrocery(Grocery grocery) {
         return groceryRepository.addGrocery(grocery);
     }
 
-    public GroceryOrder buyGrocery(GroceryOrder groceryOrder) {
-        return groceryRepository.buyGrocery(groceryOrder);
+    public GroceryOrder buyGrocery(GroceryOrderDto groceryOrderDto) {
+
+        return groceryRepository.buyGrocery(groceryOrderDto);
     }
 }
