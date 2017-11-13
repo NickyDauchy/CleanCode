@@ -6,9 +6,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.awt.*;
 
 @Named
 public class GroceryRepository {
@@ -20,10 +18,7 @@ public class GroceryRepository {
         return grocery;
     }
 
-    public GroceryOrder buyGrocery(GroceryOrderDto groceryOrderDto) {
-        Customer customer = entityManager.find(Customer.class, groceryOrderDto.getCustomerId());
-        Grocery grocery = entityManager.find(Grocery.class, groceryOrderDto.getGroceryId());
-        GroceryOrder groceryOrder = new GroceryOrder(customer, grocery, groceryOrderDto.getQuantity());
+    public GroceryOrder buyGrocery(GroceryOrder groceryOrder) {
         entityManager.persist(groceryOrder);
         return groceryOrder;
     }
@@ -41,4 +36,17 @@ public class GroceryRepository {
 
         return Arrays.asList((Grocery) result[0]);
     }
+//    public List<Grocery> GroceryBoughtByCustomerOnlyOnce(int customerId) {
+//        Customer customer = entityManager.find(Customer.class, customerId);
+//        Object[] result = entityManager.createQuery("Select g.grocery,sum(g.quantity) as pointsum " +
+//                "from GroceryOrder g " +
+//                "where g.customer like:customer and pointsum like 1 " +
+//                "group by g.grocery "
+//                , Object[].class)
+//                .setParameter("customer", customer)
+//                .setMaxResults(1)
+//                .getSingleResult();
+//
+//        return Arrays.asList((Grocery) result[0]);
+//    }
 }

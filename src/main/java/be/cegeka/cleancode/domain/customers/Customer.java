@@ -1,7 +1,10 @@
 package be.cegeka.cleancode.domain.customers;
 
 
+import be.cegeka.cleancode.domain.groceries.GroceryOrder;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CUSTOMERS")
@@ -17,6 +20,10 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "CARDID")
     private LoyaltyCard loyaltyCard;
+
+    @OneToMany
+    @JoinColumn(name = "CUSTOMER_ID")
+    private List<GroceryOrder> groceryOrderList;
 
 
     private Customer() {

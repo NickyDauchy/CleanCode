@@ -15,8 +15,8 @@ public class GroceryService {
         return groceryRepository.addGrocery(grocery);
     }
 
-    public GroceryOrder buyGrocery(GroceryOrderDto groceryOrderDto) {
-        return groceryRepository.buyGrocery(groceryOrderDto);
+    public GroceryOrder buyGrocery(GroceryOrderDto gOrderDto) {
+        return groceryRepository.buyGrocery(new GroceryOrder(gOrderDto.customerId,gOrderDto.groceryId,gOrderDto.quantity,gOrderDto.unitprice));
     }
 
     public List<Grocery> mostBoughtGroceryByCustomer(int customerId) {

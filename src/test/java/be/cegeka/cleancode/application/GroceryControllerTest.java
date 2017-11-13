@@ -43,7 +43,7 @@ public class GroceryControllerTest {
 
     @Test
     public void buyGrocery() throws Exception {
-        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1, 1, 5);
+        GroceryOrderDto groceryOrderDto = new GroceryOrderDto(1, 1, 5,new BigDecimal(0.0));
         groceryController.buyGrocery(groceryOrderDto);
         verify(groceryService).buyGrocery(groceryOrderDto);
     }

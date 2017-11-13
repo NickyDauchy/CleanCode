@@ -25,24 +25,24 @@ public class GroceryOrder {
     @Column(name = "DATE")
     private String date;
 
-    @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
+//    @ManyToOne
+    @Column(name = "CUSTOMER_ID")
+    private int customerId;
 
-    @ManyToOne
-    @JoinColumn(name = "GROCERIES_ID")
-    private Grocery grocery;
+//    @ManyToOne
+    @Column(name = "GROCERIES_ID")
+    private int groceryId;
 
     private GroceryOrder() {
     }
 
-    public GroceryOrder(Customer customer, Grocery grocery, int quantity) {
-        this.customer = customer;
-        this.grocery = grocery;
+    public GroceryOrder(int customerId, int groceryId, int quantity, BigDecimal unitPrice) {
+        this.customerId = customerId;
+        this.groceryId = groceryId;
         this.quantity = quantity;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         this.date =  dtf.format(LocalDate.now());
-        this.price = grocery.getPrice().multiply(new BigDecimal(quantity));
+        this.price = unitPrice.multiply(new BigDecimal(quantity));
     }
 
     public int getId() {
@@ -61,11 +61,11 @@ public class GroceryOrder {
         return date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public Grocery getGrocery() {
-        return grocery;
+    public int getGroceryId() {
+        return groceryId;
     }
 }
